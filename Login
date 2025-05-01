@@ -24,3 +24,21 @@ public class User {
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 }
+
+
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository repo;
+
+    public User register(User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        return repo.save(user);
+    }
+
+    public boolean login(String email, String password) {
+        Optional<User> userOpt = repo.findByEmail(email);
+        return userOpt.isPresent() &&
+               new BCryptPasswordEncoder().matches(password, userOpt.get().getPassword());
+    }
+}
