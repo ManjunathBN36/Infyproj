@@ -19,3 +19,8 @@ public class User {
     private String password;
     private String address;
 }
+
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+}
