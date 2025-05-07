@@ -91,3 +91,21 @@ public class AuthController {
         return success ? ResponseEntity.ok("Login successful") : ResponseEntity.status(401).body("Invalid credentials");
     }
 }
+
+
+
+const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:8080/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      alert("Login successful: " + data.message);
+    } else {
+      alert("Login failed. Check your username or password.");
+    }
