@@ -109,3 +109,16 @@ const handleLogin = async (e: React.FormEvent) => {
     } else {
       alert("Login failed. Check your username or password.");
     }
+
+
+
+CREATE TABLE veterinarians (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    license_number VARCHAR(255),
+    consultation_fees VARCHAR(255),
+    availability_time VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    specialization VARCHAR(255)
+);
