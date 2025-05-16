@@ -122,3 +122,20 @@ CREATE TABLE veterinarians (
     phone VARCHAR(255),
     specialization VARCHAR(255)
 );
+
+
+
+@Entity
+public class Medication {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String manufacturer;
+    private double price;
+    private String imageUrl;
+    private LocalDate expiryDate;
+}
+
+
