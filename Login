@@ -144,4 +144,26 @@ public interface MedicationRepository extends PagingAndSortingRepository<Medicat
 
 
 
+@Service
+public class MedicationService {
+
+    @Autowired
+    private MedicationRepository repository;
+
+    public Page<MedicationDTO> getMedications(Pageable pageable) {
+        return repository.findAll(pageable).map(this::mapToDTO);
+    }
+
+    private MedicationDTO mapToDTO(Medication med) {
+        double discount = 0;
+        long months = ChronoUnit.MONTHS.between(LocalDate.now(), med.getExpiryDate());
+        if (months <= 3) discount = 30;
+        else if (months <= 6) discount = 20;
+
+        return new MedicationDTO(
+                med.getId(), med.getName(), med.getManufacturer(),
+                med.getPrice(), discount, med.getImageUrl()
+        );
+    }
+}
 
