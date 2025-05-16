@@ -167,3 +167,15 @@ public class MedicationService {
     }
 }
 
+
+
+public class MedicationDTO {
+    private Long id;
+    private String name;
+    private String manufacturer;
+    private double price;
+    private double discount;
+    private String imageUrl;
+
+    // constructor, getters, setters
+}
