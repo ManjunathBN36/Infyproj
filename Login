@@ -139,3 +139,9 @@ public class Medication {
 }
 
 
+public interface MedicationRepository extends PagingAndSortingRepository<Medication, Long> {
+}
+
+
+
+
